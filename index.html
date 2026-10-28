@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Organize your personal library, track your reading progress, and manage your books with ReadSpace.">
+    <meta name="theme-color" content="#f5f7fc">
+    <title>ReadSpace | Your Personal Library</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <header class="topbar">
+        <a class="brand" href="#" aria-label="ReadSpace home">
+            <span class="brand-icon" aria-hidden="true">R</span>
+            <span>read<span class="brand-accent">space</span></span>
+        </a>
+
+        <div class="header-right">
+            <span class="header-label">
+                <span class="status-dot"></span>
+                YOUR PERSONAL LIBRARY
+            </span>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="welcome-section">
+            <div class="welcome-copy">
+                <p class="eyebrow">YOUR READING JOURNEY</p>
+                <h1>Every book opens<br>another <span>world.</span></h1>
+                <p class="welcome-description">
+                    Keep your books organized, track your progress,
+                    and make time for your next great read.
+                </p>
+            </div>
+
+            <div class="welcome-decoration" aria-hidden="true">
+                <div class="book-illustration">
+                    <div class="book book-one"></div>
+                    <div class="book book-two"></div>
+                    <div class="book book-three"></div>
+                    <div class="book book-four"></div>
+                </div>
+                <span class="decoration-star star-one">✦</span>
+                <span class="decoration-star star-two">✧</span>
+            </div>
+        </section>
+
+        <section class="stats-grid" aria-label="Reading statistics">
+            <article class="stat-card">
+                <div class="stat-icon stat-icon-blue" aria-hidden="true">▤</div>
+                <div>
+                    <p class="stat-label">TOTAL BOOKS</p>
+                    <p class="stat-number" id="total-books">0</p>
+                    <p class="stat-caption">In your library</p>
+                </div>
+            </article>
+
+            <article class="stat-card">
+                <div class="stat-icon stat-icon-gold" aria-hidden="true">◷</div>
+                <div>
+                    <p class="stat-label">READING NOW</p>
+                    <p class="stat-number" id="reading-books">0</p>
+                    <p class="stat-caption">Currently in progress</p>
+                </div>
+            </article>
+
+            <article class="stat-card">
+                <div class="stat-icon stat-icon-green" aria-hidden="true">✓</div>
+                <div>
+                    <p class="stat-label">COMPLETED</p>
+                    <p class="stat-number" id="completed-books">0</p>
+                    <p class="stat-caption">Books you've finished</p>
+                </div>
+            </article>
+
+            <article class="stat-card">
+                <div class="stat-icon stat-icon-purple" aria-hidden="true">↗</div>
+                <div>
+                    <p class="stat-label">READING GOAL</p>
+                    <p class="stat-number" id="reading-percentage">0%</p>
+                    <p class="stat-caption">Completion rate</p>
+                </div>
+            </article>
+        </section>
+
+        <section class="library-section">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">CURATED BY YOU</p>
+                    <h2>My Library<span class="heading-period">.</span></h2>
+                    <p class="section-description">
+                        Your books, your pace, your story.
+                    </p>
+                </div>
+
+                <button type="button" class="primary-button" id="open-add-form">
+                    <span aria-hidden="true">＋</span>
+                    Add a Book
+                </button>
+            </div>
+
+            <section class="add-book-panel hidden" id="add-book-panel" aria-labelledby="form-heading">
+                <div class="form-heading">
+                    <div>
+                        <p class="eyebrow">GROW YOUR COLLECTION</p>
+                        <h3 id="form-heading">Add a new book</h3>
+                    </div>
+
+                    <button
+                        type="button"
+                        class="icon-button"
+                        id="close-add-form"
+                        aria-label="Close add book form"
+                    >✕</button>
+                </div>
+
+                <form id="book-form">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="book-title">Book title <span>*</span></label>
+                            <input
+                                type="text"
+                                id="book-title"
+                                name="title"
+                                placeholder="e.g. Atomic Habits"
+                                maxlength="100"
+                                required
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label for="book-author">Author <span>*</span></label>
+                            <input
+                                type="text"
+                                id="book-author"
+                                name="author"
+                                placeholder="e.g. James Clear"
+                                maxlength="80"
+                                required
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label for="book-genre">Genre</label>
+                            <select id="book-genre" name="genre">
+                                <option value="Personal Development">Personal Development</option>
+                                <option value="Fiction">Fiction</option>
+                                <option value="Science">Science</option>
+                                <option value="Technology">Technology</option>
+                                <option value="Biography">Biography</option>
+                                <option value="Business">Business</option>
+                                <option value="Fantasy">Fantasy</option>
+                                <option value="Mystery">Mystery</option>
+                                <option value="Education">Education</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="book-status">Reading status</label>
+                            <select id="book-status" name="status">
+                                <option value="to-read">Want to Read</option>
+                                <option value="reading">Currently Reading</option>
+                                <option value="completed">Completed</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" class="secondary-button" id="cancel-add">
+                            Cancel
+                        </button>
+                        <button type="submit" class="primary-button">
+                            <span aria-hidden="true">＋</span> Save Book
+                        </button>
+                    </div>
+                </form>
+            </section>
+
+            <div class="library-toolbar">
+                <div class="search-wrapper">
+                    <span class="search-icon" aria-hidden="true">⌕</span>
+                    <label for="book-search" class="visually-hidden">Search books by title or author</label>
+                    <input
+                        type="search"
+                        id="book-search"
+                        placeholder="Search books or authors..."
+                        autocomplete="off"
+                    >
+                </div>
+
+                <div class="filter-wrapper">
+                    <label for="status-filter" class="visually-hidden">Filter books by reading status</label>
+                    <select id="status-filter">
+                        <option value="all">All Books</option>
+                        <option value="to-read">Want to Read</option>
+                        <option value="reading">Currently Reading</option>
+                        <option value="completed">Completed</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="library-summary">
+                <p id="library-count">Showing 0 books</p>
+                <p class="storage-indicator">
+                    <span aria-hidden="true">●</span> Saved in your browser
+                </p>
+            </div>
+
+            <div id="book-list" class="book-grid" aria-live="polite">
+                <!-- Book cards are created dynamically by JavaScript. -->
+            </div>
+
+            <div id="empty-state" class="empty-state">
+                <div class="empty-icon" aria-hidden="true">▤</div>
+                <h3>Your library is waiting.</h3>
+                <p>
+                    Every great reading journey starts with one book.
+                    Add your first book to get started.
+                </p>
+                <button type="button" class="primary-button" id="empty-add-button">
+                    <span aria-hidden="true">＋</span> Add Your First Book
+                </button>
+            </div>
+        </section>
+
+        <section class="reading-tip">
+            <div class="tip-icon" aria-hidden="true">✦</div>
+            <div>
+                <p class="tip-label">A LITTLE REMINDER</p>
+                <p class="tip-text">
+                    A few pages every day can take you a long way.
+                </p>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <a class="footer-brand" href="#">readspace.</a>
+            <p>Made for readers, one page at a time.</p>
+            <p>© <span id="current-year"></span> ReadSpace</p>
+        </footer>
+    </main>
+
+    <div
+        class="toast"
+        id="toast"
+        role="status"
+        aria-live="polite"
+    ></div>
+</body>
+</html>
